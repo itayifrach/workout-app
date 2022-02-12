@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_diary">
+
+    <fragment
+        android:id="@+id/navigation_diary"
+        android:name="com.itay.finalproject.ui.fragments.main.DiaryFragment"
+        android:label="@string/diary"
+        tools:layout="@layout/fragment_dairy" >
+        <action
+            android:id="@+id/action_navigation_diary_to_editWorkoutFragment"
+            app:destination="@id/editWorkoutFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_bmi"
+        android:name="com.itay.finalproject.ui.fragments.main.BMIFragment"
+        android:label="@string/bmi"
+        tools:layout="@layout/fragment_bmi" />
+
+    <fragment
+        android:id="@+id/navigation_workouts"
+        android:name="com.itay.finalproject.ui.fragments.main.WorkoutsFragment"
+        android:label="@string/workouts"
+        tools:layout="@layout/fragment_workouts" >
+        <action
+            android:id="@+id/action_navigation_workouts_to_specificWorkoutFragment"
+            app:destination="@id/specificWorkoutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/specificWorkoutFragment"
+        android:name="com.itay.finalproject.ui.fragments.main.workouts.SpecificWorkoutFragment"
+        android:label="fragment_specific_workout"
+        tools:layout="@layout/fragment_specific_workout" >
+        <action
+            android:id="@+id/action_specificWorkoutFragment_to_addWorkoutFragment"
+            app:destination="@id/addWorkoutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editWorkoutFragment"
+        android:name="com.itay.finalproject.ui.fragments.main.workouts.EditWorkoutFragment"
+        android:label="fragment_edit_workout"
+        tools:layout="@layout/fragment_edit_workout" />
+    <fragment
+        android:id="@+id/addWorkoutFragment"
+        android:name="com.itay.finalproject.ui.fragments.main.workouts.AddWorkoutFragment"
+        android:label="fragment_add_workout"
+        tools:layout="@layout/fragment_add_workout" />
+</navigation>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "555422403926",
+    "firebase_url": "https://last-project-af400-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "last-project-af400",
+    "storage_bucket": "last-project-af400.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:555422403926:android:81cdd9c8e9d27cafe19af7",
+        "android_client_info": {
+          "package_name": "com.itay.finalproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "555422403926-kcd41jsbv9rf71067fceve6hl059sb1d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDX5lS0EVRixq91BTA97WEjF1-Km-0PWlE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "555422403926-kcd41jsbv9rf71067fceve6hl059sb1d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
