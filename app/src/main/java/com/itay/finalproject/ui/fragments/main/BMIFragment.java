@@ -23,7 +23,7 @@ private TextView res;
                              ViewGroup container, Bundle savedInstanceState) {
 
 
-        return inflater.inflate(R.layout.fragment_workouts,container,false);
+        return inflater.inflate(R.layout.fragment_bmi,container,false);
     }
     private void findViews(View view) {
         res=view.findViewById(R.id.result_text);
@@ -37,7 +37,7 @@ private TextView res;
         float weight= currentUser.getWeight();
         float bmi=weight/(hight*hight);
 
-        //res.setText("your bmi result is :"+bmi);
+        res.setText("your bmi result is:"+bmi);
     }
 
 
