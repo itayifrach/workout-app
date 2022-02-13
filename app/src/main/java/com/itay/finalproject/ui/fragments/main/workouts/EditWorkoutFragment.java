@@ -12,16 +12,20 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.itay.finalproject.R;
+import com.itay.finalproject.models.Workout;
+import com.squareup.picasso.Picasso;
 
 public class EditWorkoutFragment extends Fragment {
 
 
-    private ImageView d1,d2,d3;
+    private ImageView d1,d2,d3,workoutIv;
     private EditText repsEt,setsEt;
     private Button saveWorkoutBtn,deleteWorkoutBtn;
-
+    private TextView workoutNameTv;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +39,8 @@ public class EditWorkoutFragment extends Fragment {
         setsEt = view.findViewById(R.id.num_sets_et_edit_Workout);
         saveWorkoutBtn = view.findViewById(R.id.saveWorkoutBtn);
         deleteWorkoutBtn = view.findViewById(R.id.deleteWorkoutBtn);
+        workoutNameTv = view.findViewById(R.id.workout_name_tv_edit);
+        workoutIv = view.findViewById(R.id.workout_iv_edit);
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,5 +53,30 @@ public class EditWorkoutFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         findViews(view);
+        handleWorkOut();
+    }
+    private void handleWorkOut() {
+        assert getArguments()!=null;
+        Gson g = new Gson();
+        String workOutJson = getArguments().getString("workout");
+        Workout workout = g.fromJson(workOutJson,Workout.class);
+        workoutNameTv.setText(workout.getWorkoutName());
+        Picasso.get().load(workout.getWorkoutImage()).into(workoutIv);
+        repsEt.setHint(workout.getNumOfReps() +"");
+        setsEt.setHint(workout.getNumOfSets() +"");
+        d1.setVisibility(View.INVISIBLE);
+        d2.setVisibility(View.INVISIBLE);
+        d3.setVisibility(View.INVISIBLE);
+
+        if (workout.getIntensity() == 1) {
+            d1.setVisibility(View.VISIBLE);
+        }else if (workout.getIntensity() == 2) {
+            d1.setVisibility(View.VISIBLE);
+            d2.setVisibility(View.VISIBLE);
+        }else {
+            d1.setVisibility(View.VISIBLE);
+            d2.setVisibility(View.VISIBLE);
+            d3.setVisibility(View.VISIBLE);
+        }
     }
 }

@@ -1,14 +1,19 @@
 package com.itay.finalproject.models;
 
+import com.google.firebase.firestore.IgnoreExtraProperties;
+
 import java.util.Map;
 
-public class Workout {
+public class Workout  {
     private String workoutName;
     private String workoutImage;
     private String workoutInstruction;
     private int intensity; // 1-3
     private int numOfReps;
     private int numOfSets;
+    private boolean dummy;
+    private long addedAt;
+
 
     public Workout() {
 
@@ -21,6 +26,7 @@ public class Workout {
         this.intensity = intensity;
         this.numOfReps = numOfReps;
         this.numOfSets = numOfSets;
+        this.addedAt = System.currentTimeMillis();
     }
 
     public Workout(Workout other) {
@@ -30,6 +36,14 @@ public class Workout {
         this.intensity = other.intensity;
         this.numOfReps = other.numOfReps;
         this.numOfSets = other.numOfSets;
+        this.addedAt = other.getAddedAt();
+    }
+    public long getAddedAt() {
+        return addedAt;
+    }
+
+    public void setAddedAt(long addedAt) {
+        this.addedAt = addedAt;
     }
     public String getWorkoutName() {
         return workoutName;
@@ -61,6 +75,12 @@ public class Workout {
 
     public void setWorkoutInstruction(String workoutInstruction) {
         this.workoutInstruction = workoutInstruction;
+    }
+
+     public boolean isDummy() {
+        return workoutName.equals("dummy")
+                || workoutImage.equals("dummy")
+                || workoutInstruction.equals("dummy");
     }
 
     public int getNumOfReps() {

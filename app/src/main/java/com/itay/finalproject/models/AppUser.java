@@ -9,7 +9,7 @@ public class AppUser {
     private float height;
     private float weight;
     private int age;
-    private List<DiaryWorkout> diary;
+    private List<Workout> diary;
     public AppUser(String id, String email, float height, float weight,int age) {
         this.id = id;
         this.email = email;
@@ -19,20 +19,21 @@ public class AppUser {
         this.age=age;
     }
 
-    public AppUser(String id, String email, float height, float weight,int age, ArrayList<DiaryWorkout> diary) {
+    public AppUser(String id, String email, float height, float weight,int age, ArrayList<Workout> diary) {
        this(id,email,height,weight,age);
        this.diary = diary;
     }
 
 
     public AppUser() {
+
     }
 
-    public List<DiaryWorkout> getDiary() {
+    public List<Workout> getDiary() {
         return diary;
     }
 
-    public void setDiary(List<DiaryWorkout> diary) {
+    public void setDiary(List<Workout> diary) {
         this.diary = diary;
     }
 
@@ -66,5 +67,17 @@ public class AppUser {
 
     public void setWeight(float weight) {
         this.weight = weight;
+    }
+
+    @Override
+    public String toString() {
+        return "AppUser{" +
+                "id='" + id + '\'' +
+                ", email='" + email + '\'' +
+                ", height=" + height +
+                ", weight=" + weight +
+                ", age=" + age +
+                ", diary=" + diary +
+                '}';
     }
 }

@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.itay.finalproject.R;
 
 import java.util.Random;
@@ -17,8 +18,6 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-
-
         FirebaseApp.initializeApp(getApplicationContext());
         setContentView(R.layout.activity_splash);
         Thread thread= new Thread(){

@@ -8,17 +8,22 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textview.MaterialTextView;
+import com.google.gson.Gson;
+import com.itay.finalproject.DBManager;
 import com.itay.finalproject.R;
 import com.itay.finalproject.WorkoutsRvAdapter;
+import com.itay.finalproject.models.Workout;
 
 import java.util.Random;
 
-public class DiaryFragment extends Fragment {
+public class DiaryFragment extends Fragment implements WorkoutsItemClickListener {
 
-    //private MaterialTextView changingstr;
+    private MaterialTextView changingstr;
     //private int i;
     private RecyclerView rvWorkouts;
     private WorkoutsRvAdapter rvWorkoutsAdapter;
@@ -31,15 +36,15 @@ public class DiaryFragment extends Fragment {
 
     private void findViews(View view) {
         rvWorkouts = view.findViewById(R.id.rvDiary);
-        //changingstr=view.findViewById(R.id.changeingStr);
+        changingstr=view.findViewById(R.id.changeingStr);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        /*i= new Random().nextInt(10);
-        switch(i)
-        {
+        findViews(view);
+        int i = new Random().nextInt(10);
+        switch (i) {
             case 0:
                 changingstr.setText("NO PAIN NO GAIN");
                 break;
@@ -72,10 +77,20 @@ public class DiaryFragment extends Fragment {
                 break;
             case 10:
                 changingstr.setText("NEVER GIVE UP ON YOURSELF");
-               /*break;
-}
+                break;
+        }
+        rvWorkouts.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvWorkoutsAdapter = new WorkoutsRvAdapter(DBManager.currentUser.getDiary(), false,DiaryFragment.this);
+        rvWorkouts.setAdapter(rvWorkoutsAdapter);
+    }
 
-
-        */}
-
+    @Override
+    public void itemClicked(Workout workoutItem) {
+        Bundle b = new Bundle();
+        Gson g = new Gson();
+        String workOutJson = g.toJson(workoutItem);
+        b.putString("workout",workOutJson);
+        NavHostFragment.findNavController(this)
+                .navigate(R.id.action_navigation_diary_to_editWorkoutFragment,b);
+    }
     }

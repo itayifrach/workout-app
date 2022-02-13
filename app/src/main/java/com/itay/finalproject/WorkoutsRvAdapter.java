@@ -9,8 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.itay.finalproject.models.DiaryWorkout;
 import com.itay.finalproject.models.Workout;
+import com.itay.finalproject.ui.fragments.main.WorkoutsItemClickListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -19,9 +19,12 @@ public class WorkoutsRvAdapter extends RecyclerView.Adapter<WorkoutsRvAdapter.Wo
 
     private List<Workout> workouts;
     private final boolean addPage;
-    public WorkoutsRvAdapter(List<Workout> workouts, boolean addPage) {
+    private WorkoutsItemClickListener listener;
+    public WorkoutsRvAdapter(List<Workout> workouts, boolean addPage, WorkoutsItemClickListener listener) {
+        workouts.removeIf(Workout::isDummy);
         this.workouts = workouts;
         this.addPage = addPage;
+        this.listener=listener;
     }
     @NonNull
     @Override
@@ -35,6 +38,9 @@ public class WorkoutsRvAdapter extends RecyclerView.Adapter<WorkoutsRvAdapter.Wo
     public void onBindViewHolder(@NonNull WorkoutsViewHolder holder, int position) {
         Workout workout = workouts.get(position);
         holder.bind(workout,addPage);
+       holder.itemView.setOnClickListener(v -> {
+            listener.itemClicked(workout);
+        });
     }
 
     @Override
@@ -62,12 +68,11 @@ public class WorkoutsRvAdapter extends RecyclerView.Adapter<WorkoutsRvAdapter.Wo
             d2.setVisibility(View.INVISIBLE);
             d3.setVisibility(View.INVISIBLE);
             workoutDateTv.setVisibility(View.INVISIBLE);
+
             if(addPage) {
+
                 workoutDateTv.setVisibility(View.VISIBLE);
-                if (workout instanceof DiaryWorkout) {
-                    DiaryWorkout diaryWorkout = (DiaryWorkout) workout;
-                    workoutDateTv.setText(DateUtil.getDateString(diaryWorkout.getAddedAt()));
-                }
+                workoutDateTv.setText(DateUtil.getDateString(workout.getAddedAt()));
             }
             if (workout.getIntensity() == 1) {
                 d1.setVisibility(View.VISIBLE);

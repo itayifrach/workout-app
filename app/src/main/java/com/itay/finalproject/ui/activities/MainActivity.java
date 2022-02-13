@@ -1,10 +1,16 @@
 package com.itay.finalproject.ui.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.style.TtsSpan;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.Window;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -13,6 +19,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
+import com.itay.finalproject.DBManager;
 import com.itay.finalproject.R;
 import com.itay.finalproject.databinding.ActivityMainBinding;
 
@@ -20,12 +27,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
 
-
+        Toast.makeText(this,"Welcome, " + DBManager.currentUser.getEmail(),Toast.LENGTH_SHORT).show();
         setContentView(R.layout.activity_main);
 
         // Passing each menu ID as a set of Ids because each
@@ -38,4 +42,21 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController((NavigationBarView) findViewById(R.id.nav_view),navController);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.app_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+       switch (item.getItemId()) {
+           case R.id.navigation_settings:
+               Intent i = new Intent(this,SettingsActivity.class);
+               startActivity(i);
+               break;
+       }
+
+        return super.onOptionsItemSelected(item);
+    }
 }

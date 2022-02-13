@@ -28,15 +28,6 @@
         tools:layout="@layout/fragment_workouts" >
         <action
             android:id="@+id/action_navigation_workouts_to_specificWorkoutFragment"
-            app:destination="@id/specificWorkoutFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/specificWorkoutFragment"
-        android:name="com.itay.finalproject.ui.fragments.main.workouts.SpecificWorkoutFragment"
-        android:label="fragment_specific_workout"
-        tools:layout="@layout/fragment_specific_workout" >
-        <action
-            android:id="@+id/action_specificWorkoutFragment_to_addWorkoutFragment"
             app:destination="@id/addWorkoutFragment" />
     </fragment>
     <fragment
