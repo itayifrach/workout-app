@@ -7,6 +7,31 @@
     tools:context=".ui.fragments.main.WorkoutsFragment"
     android:background="@color/primaryCream"
     >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/rvWorkouts"
+        app:layout_constraintEnd_toStartOf="@id/animationView"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="workouts:"
+        android:textColor="@color/buttons"
+        android:id="@+id/title_workouts"/>
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationView"
+        android:layout_width="500px"
+        android:layout_height="500px"
+        app:layout_constraintBottom_toTopOf="@id/rvWorkouts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/title_workouts"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/running_man" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvWorkouts"

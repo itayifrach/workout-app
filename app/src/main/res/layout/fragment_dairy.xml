@@ -7,16 +7,18 @@
     tools:context=".ui.fragments.main.DiaryFragment"
     android:background="@color/primaryCream"
     >
-<com.google.android.material.textview.MaterialTextView
-    android:layout_width="wrap_content" android:layout_height="wrap_content"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintBottom_toTopOf="@id/rvDiary"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    android:id="@+id/changeingStr"
-    android:text="your history"
-    android:textSize="30sp"
-    />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/changeingStr"
+        android:layout_width="500px"
+        android:layout_height="wrap_content"
+        android:text="your history"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/rvDiary"
+        app:layout_constraintEnd_toStartOf="@+id/animationView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.504" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvDiary"
@@ -31,4 +33,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/workout_item" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationView"
+        android:layout_width="400px"
+        android:layout_height="400px"
+        app:layout_constraintBottom_toTopOf="@+id/rvDiary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/changeingStr"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/cyceling" />
 </androidx.constraintlayout.widget.ConstraintLayout>

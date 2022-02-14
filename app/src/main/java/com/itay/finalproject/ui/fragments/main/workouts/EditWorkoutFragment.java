@@ -1,5 +1,9 @@
 package com.itay.finalproject.ui.fragments.main.workouts;
 
+import static com.itay.finalproject.DBManager.currentUser;
+import static com.itay.finalproject.DBManager.editUser;
+import static com.itay.finalproject.DBManager.getWorkouts;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -54,6 +58,7 @@ public class EditWorkoutFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         findViews(view);
         handleWorkOut();
+      //  deleteWorkoutBtn.setOnClickListener(v -> editUser());
     }
     private void handleWorkOut() {
         assert getArguments()!=null;
