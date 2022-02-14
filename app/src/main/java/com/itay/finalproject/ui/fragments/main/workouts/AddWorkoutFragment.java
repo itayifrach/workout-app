@@ -32,7 +32,7 @@ public class AddWorkoutFragment extends Fragment {
     private ImageView d1,d2,d3,workoutIv;
     private EditText repsEt,setsEt;
     private Button addWorkoutBtn;
-    private TextView workoutNameTv;
+    private TextView workoutNameTv,workoutInstruction;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +47,7 @@ public class AddWorkoutFragment extends Fragment {
         addWorkoutBtn = view.findViewById(R.id.addWorkoutBtn);
         workoutNameTv = view.findViewById(R.id.workout_name_tv_add);
         workoutIv = view.findViewById(R.id.workout_iv_add);
+        workoutInstruction=view.findViewById(R.id.instruction_add);
     }
 
     @Override
@@ -76,6 +77,7 @@ public class AddWorkoutFragment extends Fragment {
         String workOutJson = getArguments().getString("workout");
          workout = g.fromJson(workOutJson,Workout.class);
         workoutNameTv.setText(workout.getWorkoutName());
+        workoutInstruction.setText(workout.getWorkoutInstruction());
         Picasso.get().load(workout.getWorkoutImage()).into(workoutIv);
         d1.setVisibility(View.INVISIBLE);
         d2.setVisibility(View.INVISIBLE);

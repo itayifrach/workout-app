@@ -9,4 +9,5 @@
     <color name = "primaryCream">#f7f6e7</color>
     <color name = "primaryGray">#c1c0b9</color>
     <color name = "buttons">#537791</color>
+    <color name = "hint">#DFDDD6</color>
 </resources>

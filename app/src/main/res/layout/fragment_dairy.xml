@@ -18,7 +18,9 @@
         app:layout_constraintEnd_toStartOf="@+id/animationView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.504" />
+        app:layout_constraintVertical_bias="0.504"
+        android:textColor="@color/buttons"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvDiary"
