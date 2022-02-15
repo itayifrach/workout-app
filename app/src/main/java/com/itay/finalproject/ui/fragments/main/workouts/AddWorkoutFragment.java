@@ -50,6 +50,7 @@ public class AddWorkoutFragment extends Fragment {
         workoutInstruction=view.findViewById(R.id.instruction_add);
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,11 +65,18 @@ public class AddWorkoutFragment extends Fragment {
         handleWorkOut();
 
         //click listeners
-        addWorkoutBtn.setOnClickListener((v) -> DBManager.addWorkoutToUser(workout, unused -> {
-            Toast.makeText(getContext(),"Successfully workout " + workout.getWorkoutName(),Toast.LENGTH_SHORT).show();
-            NavHostFragment.findNavController(AddWorkoutFragment.this).popBackStack();
-        }, e -> Toast.makeText(getContext(),"There was an error adding workout",Toast.LENGTH_SHORT).show())
-        );
+        addWorkoutBtn.setOnClickListener((v) -> {
+            if (repsEt.getText().toString().isEmpty() || setsEt.getText().toString().isEmpty()) {
+                Toast.makeText(getContext(), "Please enter number of reps and sets", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            workout.setNumOfReps(Integer.parseInt(repsEt.getText().toString()));
+            workout.setNumOfSets(Integer.parseInt(setsEt.getText().toString()));
+            DBManager.addWorkoutToUser(workout, unused -> {
+                Toast.makeText(getContext(), "Successfully workout " + workout.getWorkoutName(), Toast.LENGTH_SHORT).show();
+                NavHostFragment.findNavController(AddWorkoutFragment.this).popBackStack();
+            }, e -> Toast.makeText(getContext(), "There was an error adding workout", Toast.LENGTH_SHORT).show());
+        });
     }
     private Workout workout;
     private void handleWorkOut() {

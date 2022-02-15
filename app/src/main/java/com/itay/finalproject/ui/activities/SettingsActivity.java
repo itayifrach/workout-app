@@ -32,6 +32,7 @@ public class SettingsActivity extends AppCompatActivity {
         saveBtn.setOnClickListener(v -> {
             if(heightEt.getText().toString().isEmpty() || widthEt.getText().toString().isEmpty()) {
                 Toast.makeText(this,"Please fill all the fields",Toast.LENGTH_SHORT).show();
+                return;
             }
             ProgressDialog dialog = new ProgressDialog(this);
             dialog.setTitle("Final Project");

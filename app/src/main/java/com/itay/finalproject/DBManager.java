@@ -40,6 +40,7 @@ public class DBManager {
                 .addOnFailureListener(onFailure);
     }
     // add & edit
+
     public static void saveUser(OnSuccessListener<Void> onSuccess, OnFailureListener onFailure) {
         getUsersRef().document(currentUser.getId()).set(currentUser)
                 .addOnSuccessListener(onSuccess)
@@ -66,6 +67,28 @@ public class DBManager {
 
     }
 
+    public static void editWorkout(Workout workout, OnSuccessListener<Void> onSuccessListener,OnFailureListener onFailureListener) {
+        int index = 0;
+        boolean found = false;
+        while(index < currentUser.getDiary().size()) {
+            if (workout.getWorkoutName().equals(currentUser.getDiary().get(index).getWorkoutName())) {
+                found = true;
+                break;
+            }
+            index++;
+        }
+        if(!found) {
+            onFailureListener.onFailure(new Exception("No workouts found"));
+            return;
+        }
+        currentUser.getDiary().get(index).setNumOfReps(workout.getNumOfReps());
+        currentUser.getDiary().get(index).setNumOfSets(workout.getNumOfSets());
+        editUser(currentUser,onSuccessListener,onFailureListener);
+    }
+    public static void removeWorkOutFromUser(Workout workout, OnSuccessListener<Void> onSuccessListener, OnFailureListener onFailureListener) {
+        currentUser.getDiary().removeIf((w) -> w.getWorkoutName().equals(workout.getWorkoutName()));
+        editUser(currentUser, onSuccessListener, onFailureListener);
+    }
     public static void getWorkouts(OnFirestoreObjectListener<List<Workout>> listener) {
 
         getWorkoutsRef().addSnapshotListener((value, error) -> {
